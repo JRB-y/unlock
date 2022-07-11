@@ -1,4 +1,6 @@
 <script setup>
+import { useWallet } from 'solana-wallets-vue';
+import { WalletMultiButton } from 'solana-wallets-vue';
 
 </script>
 
@@ -8,12 +10,12 @@
       <img alt="Unlock logo" src="../assets/logo.png" /> 
     </div>
     <div class="auth-btn">
-      <button>Connect Wallet</button>
+      <WalletMultiButton />
     </div>
   </header>
 </template>
 
-<style scoped lang="scss">
+<style lang="scss">
   header {
     width: 100%;
     background: black;
@@ -22,29 +24,29 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 20px;
-    
+
     .logo {
       width: 180px;
       display: flex;
       align-items: center;
-      
     }
+  }
+  // Wallet button
+  .swv-button {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 8px 25px;
+    border-radius: 3px;
+    font-size: 16px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
 
-    .auth-btn {
-      button {
-        background: transparent;
-        color: white;
-        border: 1px solid white;
-        padding: 8px 25px;
-        border-radius: 3px;
-        font-size: 16px;
-
-        &:hover{
-          cursor: pointer;
-          background: white;
-          color: black;
-        }
-      }
+    &:hover{
+      cursor: pointer;
+      background: white;
+      color: black;
     }
   }
 </style>
