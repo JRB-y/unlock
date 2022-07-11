@@ -1,0 +1,15 @@
+@import './_reset.scss';
+@import './_fonts.scss';
+
+body {
+  font-family: $body-font-family;
+}
+h1, h2, h3, h4, h5 {
+  font-family: $heading-font-family;
+}
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
