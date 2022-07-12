@@ -1,5 +1,4 @@
 <script setup>
-import { useWallet } from 'solana-wallets-vue';
 import { WalletMultiButton } from 'solana-wallets-vue';
 
 </script>
