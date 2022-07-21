@@ -5,12 +5,10 @@ import './assets/styles/app.scss';
 // Routes
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from './pages/Home.vue';
-import Result from './pages/Result.vue';
 import Authority from './pages/Authority.vue';
 const routes = [
   { path: '/', component: Home, name: 'home' },
   { path: '/authority', component: Authority, name: 'authority' },
-  { path: '/result', component: Result, name: 'result' },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

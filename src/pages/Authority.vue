@@ -81,17 +81,8 @@ const updateAuthority = async () => {
     transaction.recentBlockhash = blockhash;
     transaction.feePayer = wallet.value.publicKey;
 
-
-    // const signedTransaction = await provider.request({
-    //   method: "signTransaction",
-    //   params: {
-    //     message: bs58.encode(transaction.serializeMessage()),
-    //   },
-    // });
-
-    console.log('serialize', transaction.serializeMessage().byteLength);
-    // const trx = await sendTransaction(transaction, connection);
-    // console.log('TRX', trx);
+    const trx = await sendTransaction(transaction, connection);
+    console.log('trx', trx);
 
     LOADING.value = false;
   } catch (error) {
