@@ -2,16 +2,20 @@
 // import Header from './components/Header.vue'
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
-import Home from './pages/Home.vue';
 
 </script>
 
 <template>
   <Header />
-  <router-view></router-view>
+  <div class="wrapper">
+    <router-view></router-view>
+  </div>
   <Footer />
 </template>
 
 <style scoped lang="scss">
-  
+  .wrapper {
+    width: 90%;
+    margin: auto;
+  }
 </style>

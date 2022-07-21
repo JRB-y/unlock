@@ -1,11 +1,14 @@
 <script setup>
 import { WalletMultiButton } from 'solana-wallets-vue';
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const goHome = () => router.push({ name: 'home' })
 
 </script>
 
 <template>
   <header>
-    <div class="logo">
+    <div class="logo" @click="goHome">
       <img alt="Unlock logo" src="../assets/logo.png" /> 
     </div>
     <div class="auth-btn">
@@ -47,5 +50,8 @@ import { WalletMultiButton } from 'solana-wallets-vue';
       background: white;
       color: black;
     }
+  }
+  .logo {
+    cursor: pointer;
   }
 </style>

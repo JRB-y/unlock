@@ -5,8 +5,12 @@ import './assets/styles/app.scss';
 // Routes
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from './pages/Home.vue';
+import Result from './pages/Result.vue';
+import Authority from './pages/Authority.vue';
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Home, name: 'home' },
+  { path: '/authority', component: Authority, name: 'authority' },
+  { path: '/result', component: Result, name: 'result' },
 ];
 const router = createRouter({
   history: createWebHashHistory(),
@@ -14,8 +18,8 @@ const router = createRouter({
 });
 
 // wallet
-import SolanaWallets from 'solana-wallets-vue';
-import 'solana-wallets-vue/styles.css';
+import SolanaWallets, { initWallet } from 'solana-wallets-vue';
+// import 'solana-wallets-vue/styles.css';
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   PhantomWalletAdapter,
@@ -31,6 +35,7 @@ const walletOptions = {
   ],
   autoConnect: true,
 }
+initWallet(walletOptions)
 
 const app = createApp(App)
 app.use(router)
