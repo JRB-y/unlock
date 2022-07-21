@@ -1,15 +1,14 @@
 <script setup>
 import { ref } from 'vue';
 import { store } from '../store';
-import { cluster } from '../config';
 import { useRouter } from 'vue-router';
+import { cluster, KEY_TYPES } from '../config';
 
 import { useWallet } from 'solana-wallets-vue';
-import { Metaplex, keypairIdentity, walletAdapterIdentity } from '@metaplex-foundation/js';
 import { Connection, clusterApiUrl, PublicKey } from '@solana/web3.js';
+import { Metaplex, walletAdapterIdentity } from '@metaplex-foundation/js';
 
 const router = useRouter();
-const KEY_TYPES = ['candy_machine', 'first_creator'];
 const LOADING = ref(false);
 
 const fetchMintHandler = async () => {
@@ -18,7 +17,6 @@ const fetchMintHandler = async () => {
 
   if (!connected.value) throw new Error('Please connect with your solana wallet.');
   if (!store.key) throw new Error('Please enter the key');
-  console.log('store.key_type ', store.key_type);
   if (!KEY_TYPES.includes(store.key_type)) throw new Error('Invalid key_type');
 
   try {
@@ -28,31 +26,19 @@ const fetchMintHandler = async () => {
     const metaplex = Metaplex.make(connection)
       .use(walletAdapterIdentity(wallet.value._wallet))
 
-    // TODO: check if he is the CM owner
+    // TODO#1 check if the user is the CM owner
     let nfts;
     switch (store.key_type) {
-      case 'candy_machine':
+      case KEY_TYPES[0]:
         nfts = await metaplex.nfts().findAllByCandyMachine(new PublicKey(store.key))
         break;
-      case 'first_creator':
+      case KEY_TYPES[1]: 
         nfts = await metaplex.nfts().findAllByCreator(new PublicKey(store.key))
         break;
-    
-      default:
-        break;
     }
-
     if (!nfts.length) throw new Error('No items found');
 
-    // fetch the collection
-    const response = await fetch(nfts[0].uri)
-    const data = await response.json();
-
-
     store.nfts = nfts;
-    // store.collection = data.collection.name;
-    // store.collection.key = nfts[0].collection.key.toString();
-
     router.push({ name: 'authority' })
     LOADING.value = false;
   } catch (error) {

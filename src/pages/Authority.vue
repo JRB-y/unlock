@@ -4,7 +4,7 @@ import { store } from '../store';
 import { cluster } from '../config';
 import { useWallet } from 'solana-wallets-vue';
 import { useRouter } from 'vue-router';
-import bs58 from 'bs58';
+
 import { Connection, clusterApiUrl, PublicKey, Transaction } from '@solana/web3.js';
 import { createUpdateMetadataAccountV2Instruction } from '@metaplex-foundation/mpl-token-metadata';
 
